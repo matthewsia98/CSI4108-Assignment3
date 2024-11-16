@@ -67,6 +67,8 @@ def decrypt(C: tuple[int, int], keys: dict[str, dict[str, int]]) -> int:
 
 
 if __name__ == "__main__":
+    print()
+
     m1 = 72
     keys = generate_keys()
     c1 = encrypt(m1, keys.get("public", {}))

@@ -102,6 +102,8 @@ def crt_decrypt(c: int, d: int, p: int, q: int) -> int:
 
 
 if __name__ == "__main__":
+    print()
+
     m = 476931823457909
 
     keys = generate_keys()

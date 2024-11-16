@@ -38,6 +38,8 @@ def test(n):
 
 
 if __name__ == "__main__":
+    print()
+
     # 14 bits can represent integer up to 2^14 - 1 = 16383
     # the smallest 14 bit integer that has a 1 as the most significant bit is 2^13 = 8192
     # let's find the largest 14 bit probable prime that has a 1 as the most significant bit
