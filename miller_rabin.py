@@ -37,27 +37,28 @@ def test(n):
     return "composite"
 
 
-# 14 bits can represent integer up to 2^14 - 1 = 16383
-# the smallest 14 bit integer that has a 1 as the most significant bit is 2^13 = 8192
-# let's find the largest 14 bit probable prime that has a 1 as the most significant bit
-for n in range(2**14 - 1, 2**13 - 1, -1):
-    results = []
-    for t in range(1, 8):
-        result = test(n)
-        # print(f"{n = }, {t = } ({result})")
-        results.append(result)
+if __name__ == "__main__":
+    # 14 bits can represent integer up to 2^14 - 1 = 16383
+    # the smallest 14 bit integer that has a 1 as the most significant bit is 2^13 = 8192
+    # let's find the largest 14 bit probable prime that has a 1 as the most significant bit
+    for n in range(2**14 - 1, 2**13 - 1, -1):
+        results = []
+        for t in range(1, 8):
+            result = test(n)
+            # print(f"{n = }, {t = } ({result})")
+            results.append(result)
 
-    if "composite" in results:
-        print(f"{n = } ({itob(n)}) is composite")
+        if "composite" in results:
+            print(f"{n = } ({itob(n)}) is composite")
 
-    if "composite" not in results:
-        print(f"{n = } ({itob(n)}) is a probable prime")
-        print()
-        break
+        if "composite" not in results:
+            print(f"{n = } ({itob(n)}) is a probable prime")
+            print()
+            break
 
-with open("10000.txt", "r") as f:
-    content = f.read()
-    if str(n) in content:
-        print(f"{n = } ({itob(n)}) is in the table")
-    else:
-        print(f"{n = } ({itob(n)}) is NOT in the table")
+    with open("10000.txt", "r") as f:
+        content = f.read()
+        if str(n) in content:
+            print(f"{n = } ({itob(n)}) is in the table")
+        else:
+            print(f"{n = } ({itob(n)}) is NOT in the table")
