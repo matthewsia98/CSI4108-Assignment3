@@ -69,8 +69,11 @@ def decrypt(C: tuple[int, int], keys: dict[str, dict[str, int]]) -> int:
 m1 = 72
 keys = generate_keys()
 c1 = encrypt(m1, keys.get("public", {}))
+print(f"Encrypting m1: E(m = {m1}) = {c1}")
 d1 = decrypt(c1, keys)
-print(f"{m1 = }\t{c1 = }\t{d1 = }")
+print(f"Decrypting c1: D(c = {c1}) = {d1}")
+
+print()
 
 # If M_1 is known, then M_2 is easily computed as:
 # M_2 = (C_21)^-1 * (C_22 * M_1) mod q where
@@ -79,8 +82,16 @@ print(f"{m1 = }\t{c1 = }\t{d1 = }")
 q = keys.get("public", {}).get("q")
 assert isinstance(q, int)
 m2 = random.randint(0, q - 1)
+print(f"Picking random m2 (0 <= m2 <= q - 1): m2 = {m2}")
 c2 = encrypt(m2, keys.get("public", {}))
+print(f"Encrypting m2: E(m = {m2}) = {c2}")
+
+print("""
+If M_1 is known, then M_2 is easily computed as:
+    M_2 = (C_21)^-1 * (C_22 * M_1) mod q where
+    C_21 = KM_1 mod q
+    C_22 = KM_2 mod q""")
 c21 = c1[1]
 c22 = c2[1]
 computed_m2 = (pow(c21, -1, q) * (c22 * m1)) % q
-print(f"{m2 = }\t{c2 = }\t{computed_m2 = }")
+print(f"Given M_1 = {m1}, C_21 = {c21}, C_22 = {c22},\n\tcomputed m2 = {computed_m2}")

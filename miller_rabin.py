@@ -1,7 +1,12 @@
 import random
+import textwrap
 
 
 random.seed(0)
+
+
+def itob(n):
+    return " ".join(textwrap.wrap(format(n, "b").zfill(14), 4))
 
 
 def test(n):
@@ -17,7 +22,6 @@ def test(n):
 
     # 2. select random integer a such that 1 < a < n - 1
     a = random.randint(2, n - 2)
-    print(f"{n = }, {a = }")
 
     # 3. if a^q mod n = 1 then return inconclusive
     if pow(a, q, n) == 1:
@@ -33,10 +37,10 @@ def test(n):
     return "composite"
 
 
-while True:
-    # 14 bits can represent integer up to 2^14 - 1 = 16383
-    n = random.randint(3, 2**14 - 1)
-
+# 14 bits can represent integer up to 2^14 - 1 = 16383
+# the smallest 14 bit integer that has a 1 as the most significant bit is 2^13 = 8192
+# let's find the largest 14 bit probable prime that has a 1 as the most significant bit
+for n in range(2**14 - 1, 2**13 - 1, -1):
     results = []
     for t in range(1, 8):
         result = test(n)
@@ -44,17 +48,16 @@ while True:
         results.append(result)
 
     if "composite" in results:
-        print(f"{n = } is composite")
-        print()
+        print(f"{n = } ({itob(n)}) is composite")
 
     if "composite" not in results:
-        print(f"{n = } is a probable prime")
+        print(f"{n = } ({itob(n)}) is a probable prime")
         print()
         break
 
 with open("10000.txt", "r") as f:
     content = f.read()
     if str(n) in content:
-        print(f"{n = } is in the table")
+        print(f"{n = } ({itob(n)}) is in the table")
     else:
-        print(f"{n = } is NOT in the table")
+        print(f"{n = } ({itob(n)}) is NOT in the table")
