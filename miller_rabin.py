@@ -62,3 +62,5 @@ if __name__ == "__main__":
             print(f"{n = } ({itob(n)}) is in the table")
         else:
             print(f"{n = } ({itob(n)}) is NOT in the table")
+
+    print()
