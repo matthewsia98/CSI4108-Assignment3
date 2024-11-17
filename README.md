@@ -9,3 +9,7 @@ Question 2: `python miller_rabin.py`
 Question 3a: `python rsa.py`
 
 ![](q3a.png)
+
+Question 3b: `python ecc.py`
+
+![](q3b.png)
