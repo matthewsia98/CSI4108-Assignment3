@@ -9,10 +9,13 @@ def generate_keys() -> dict[str, dict[str, int]]:
     a = 13
 
     # User A generates a private/public key pairs as follows:
+
     # 1. Generate a random integer X_A, such that 1 < X_A < q - 1
     X_A = random.randint(2, q - 2)
+
     # 2. Compute Y_A = a^X_A mod q
     Y_A = pow(a, X_A, q)
+
     # 3. A's private key is X_A; A's public key is {q, a, Y_A}
     return {
         "private": {"X_A": X_A},
