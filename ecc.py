@@ -5,8 +5,12 @@ from dataclasses import dataclass
 
 import math
 import random
+import sys
 import textwrap
 import time
+
+
+sys.version_info >= (3, 8) or sys.exit("Python 3.8+ is required.")
 
 
 random.seed(0)
