@@ -31,6 +31,8 @@ class Curve:
         self.h = h
 
     def is_point_on_curve(self, p: Point) -> bool:
+        assert isinstance(p.x, int) and isinstance(p.y, int)
+
         # The curve E: y^2 = x^3 + ax + b over F_p is defined by:
         return (
             pow(p.y, 2, self.p)
