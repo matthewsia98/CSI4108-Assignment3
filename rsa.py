@@ -1,5 +1,4 @@
 import miller_rabin
-import functools
 import json
 import math
 import os
@@ -10,8 +9,13 @@ import time
 random.seed(0)
 
 
-@functools.cache
 def generate_primes():
+    path = "rsa_parameters.json"
+    if os.path.exists(path):
+        with open(path, "r") as f:
+            data = json.load(f)
+            return (data["private"]["p"], data["private"]["q"])
+
     p = q = None
 
     while p is None or q is None:
