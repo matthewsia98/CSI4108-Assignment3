@@ -147,7 +147,6 @@ if __name__ == "__main__":
     # REFERENCE: Stallings Edition 5 Pages 318-319
     # Analog of Diffie-Hellman Key Exchange
 
-    start = time.perf_counter_ns()
     # 1. Alice selects an integer n_A less than n.
     # This is Alice's private key.
     # Alice then generates a public key P_A = n_A * G; the public key is a point in E_p(a, b).
@@ -160,6 +159,7 @@ if __name__ == "__main__":
 
     # 3. Alice generates the secret key k = n_A * P_B.
     #    Bob generates the secret key k = n_B * P_A.
+    start = time.perf_counter_ns()
     k_A = n_A * P_B
     k_B = n_B * P_A
     end = time.perf_counter_ns()
@@ -197,7 +197,6 @@ if __name__ == "__main__":
         "855E6EEB 22B3B2E5"
     )
 
-    start = time.perf_counter_ns()
     # Alice selects a random integer X_A < q and computes Y_A = alpha^X_A mod q.
     # X_A is Alice's private key and Y_A is Alice's public key.
     X_A = random.randint(1, q - 1)
@@ -208,6 +207,7 @@ if __name__ == "__main__":
     X_B = random.randint(1, q - 1)
     Y_B = pow(alpha, X_B, q)
 
+    start = time.perf_counter_ns()
     # Alice computes the key as K = Y_B^X_A mod p.
     K_A = pow(Y_B, X_A, q)
 
